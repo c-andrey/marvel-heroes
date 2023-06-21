@@ -68,6 +68,9 @@ class VotesController extends Controller
 
             $heroes = $this->_heroesRemoteService->getHeroes($params);
 
+            $heroes['page'] = (int) $params['page'];
+            $heroes['pages'] = (int) ceil($heroes['total'] / $heroes['limit']);
+
             $heroes['results'] = collect($heroes['results'])->map(function ($hero) {
                 $votes = Votes::where('hero_id', $hero['id'])->first();
 
@@ -77,7 +80,7 @@ class VotesController extends Controller
 
                 return $hero;
             });
-            $heroes['page'] = (int) $params['page'];
+
 
             return response()->json(['heroes' => $heroes], 200);
         } catch (PDOException $e) {

@@ -23,8 +23,9 @@ class ListHeroesWithPaginationTest extends TestCase
                 'data' => [
                     "offset" =>  $offset,
                     "limit" =>  5,
-                    "total" =>  1562,
+                    "total" =>  10,
                     "count" =>  5,
+                    "pages" => 2,
                     "results" =>  [
                         [
                             "id" =>  1011334,
@@ -59,7 +60,8 @@ class ListHeroesWithPaginationTest extends TestCase
         $response->assertJson([
             'heroes' => [
                 'offset' => 5,
-                'page' => 2
+                'page' => 2,
+                "pages" => 2,
             ]
         ]);
     }

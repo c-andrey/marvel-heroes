@@ -6,13 +6,15 @@ use Illuminate\Support\Facades\Http;
 
 class HeroesRemoteService
 {
-    public function getHeroes()
+    public function getHeroes(array $attributes)
     {
-        $response = Http::get(env('MARVEL_API_URL') . '/characters', [
+        $params = [
             'apikey' =>  env('MARVEL_API_PUBLIC_KEY'),
             'ts' =>  env('MARVEL_API_TIMESTAMP'),
-            'hash' =>  env('MARVEL_API_HASHMD5')
-        ]);
+            'hash' =>  env('MARVEL_API_HASHMD5'),
+            ...$attributes
+        ];
+        $response = Http::get(env('MARVEL_API_URL') . '/characters', $params);
 
         if ($response->successful()) {
             return $response->json()['data'];

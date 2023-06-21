@@ -66,7 +66,7 @@ class VotesController extends Controller
         try {
             $params = $request->all();
 
-            $heroes = $this->_heroesRemoteService->getHeroes();
+            $heroes = $this->_heroesRemoteService->getHeroes($params);
 
             $heroes['results'] = collect($heroes['results'])->map(function ($hero) {
                 $votes = Votes::where('hero_id', $hero['id'])->first();

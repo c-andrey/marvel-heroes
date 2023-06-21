@@ -11,9 +11,9 @@ class UpdateDownVotesTest extends TestCase
 {
     use RefreshDatabase;
     /**
-     * A basic feature test example.
+     * Test to update down the votes on a hero.
      */
-    public function test_example(): void
+    public function test_update_down_votes(): void
     {
         $this->seed(VotesSeeder::class);
 

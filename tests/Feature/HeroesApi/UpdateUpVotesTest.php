@@ -11,9 +11,9 @@ class UpdateUpVotesTest extends TestCase
 {
     use RefreshDatabase;
     /**
-     * A test to update votes.
+     * * Test to update up the votes on a hero.
      */
-    public function test_update_votes(): void
+    public function test_update_up_votes(): void
     {
         $this->seed(VotesSeeder::class);
 

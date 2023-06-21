@@ -13,13 +13,13 @@ class ListHeroesWithFiltersTest extends TestCase
 {
     use RefreshDatabase;
     /**
-     * A basic feature test example.
+     * Filter results passing name and limit.
      */
-    public function test_example(): void
+    public function test_list_heroes_with_filters(): void
     {
         $this->seed(VotesSeeder::class);
         $name = "3-D Man";
-        $limit = 1;
+        $limit = 5;
 
         $url = config('MARVEL_API_URL') . '/characters' . '?name=' . $name . '&limit=' . $limit . '*';
 
@@ -27,7 +27,7 @@ class ListHeroesWithFiltersTest extends TestCase
             $url => Http::response([
                 'data' => [
                     "offset" =>  0,
-                    "limit" =>  1,
+                    "limit" =>  $limit,
                     "total" =>  1,
                     "count" =>  1,
                     "results" =>  [
@@ -40,14 +40,13 @@ class ListHeroesWithFiltersTest extends TestCase
             ], 200)
         ]);
 
-        $response = $this->get('/api/heroes' . '?name=' . $name . '&limit=' . $limit . '*');
+        $response = $this->get('/api/heroes' . '?name=' . $name . '&perPage=' . $limit . '&page=1');
 
         $response->assertStatus(200);
         $response->assertJsonCount(1, 'heroes.results');
         $response->assertJson([
             "heroes" => [
-                "limit" => 1,
-                "total" => 1,
+                "limit" => $limit,
                 "results" => [[
                     "name" => "3-D Man",
 

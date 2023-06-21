@@ -12,9 +12,9 @@ class ListHeroesApiWithVotesTest extends TestCase
 {
     use RefreshDatabase;
     /**
-     * A basic feature test example.
+     * Listing heroes with votes stored.
      */
-    public function test_example(): void
+    public function test_list_heroes_with_votes(): void
     {
         $this->seed(VotesSeeder::class);
 
@@ -37,7 +37,7 @@ class ListHeroesApiWithVotesTest extends TestCase
             ], 200)
         ]);
 
-        $response = $this->get('/api/heroes');
+        $response = $this->get('/api/heroes' . '?page=1&perPage=5');
 
         $response->assertStatus(200);
         $response->assertJson([

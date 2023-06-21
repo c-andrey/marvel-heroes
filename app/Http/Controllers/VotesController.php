@@ -6,6 +6,7 @@ use App\Http\Requests\Votes\StoreVotesRequest;
 use App\Models\Votes;
 use Exception;
 use Illuminate\Http\Request;
+use PDOException;
 
 class VotesController extends Controller
 {
@@ -14,11 +15,27 @@ class VotesController extends Controller
         try {
             $params = $request->all();
 
-            $vote = Votes::create($params);
+            switch ($params['action']) {
+                case 'up':
+                    $votes = Votes::where('hero_id', $params['hero_id'])->first();
 
-            return response()->json(['created' => true], 200);
+                    if ($votes) {
+                        $votes->increment('votes');
+                    } else {
+                        Votes::create($params);
+                    }
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+
+            return response()->json(['voted' => true], 200);
+        } catch (PDOException $e) {
+            return response()->json(['error' => $e->getMessage()], $e->getCode() || 500);
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), $e->getCode() || 500);
+            return response()->json(['error' => $e->getMessage()], $e->getCode() || 500);
         }
     }
 }

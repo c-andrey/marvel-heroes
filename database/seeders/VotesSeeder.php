@@ -15,7 +15,7 @@ class VotesSeeder extends Seeder
     {
         DB::table('votes')->insert([
             'hero_id' => 1011334,
-            'votes' => 0
+            'votes' => 1
         ]);
     }
 }

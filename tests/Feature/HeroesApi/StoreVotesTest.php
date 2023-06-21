@@ -25,7 +25,7 @@ class StoreVotesTest extends TestCase
         $response->assertJson(['voted' => true]);
         $this->assertDatabaseHas('votes', [
             'hero_id' => 1,
-            'votes' => 0
+            'votes' => 1
         ]);
         $this->assertDatabaseCount('votes', 1);
     }

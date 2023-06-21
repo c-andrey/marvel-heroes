@@ -8,12 +8,23 @@ class HeroesRemoteService
 {
     public function getHeroes(array $attributes)
     {
+        $perPage = isset($attributes['perPage']) ? (int) $attributes['perPage'] : 10;
+
         $params = [
             'apikey' =>  env('MARVEL_API_PUBLIC_KEY'),
             'ts' =>  env('MARVEL_API_TIMESTAMP'),
             'hash' =>  env('MARVEL_API_HASHMD5'),
-            ...$attributes
+            'limit' => $perPage
         ];
+
+        if (isset($attributes['name'])) {
+            $params['name'] = $attributes['name'];
+        }
+
+        if (isset($attributes['page'])) {
+            $params['offset'] = ((int) $attributes['page'] - 1) * $perPage;
+        }
+
         $response = Http::get(env('MARVEL_API_URL') . '/characters', $params);
 
         if ($response->successful()) {
@@ -22,7 +33,7 @@ class HeroesRemoteService
 
         return response()->json([
             'data' => null,
-            'message' => 'Failed',
-        ], 500);
+            'message' => $response->json()['status'] ?? 'Error getting heroes from Marvel API',
+        ], $response->status());
     }
 }

@@ -77,6 +77,7 @@ class VotesController extends Controller
 
                 return $hero;
             });
+            $heroes['page'] = (int) $params['page'];
 
             return response()->json(['heroes' => $heroes], 200);
         } catch (PDOException $e) {

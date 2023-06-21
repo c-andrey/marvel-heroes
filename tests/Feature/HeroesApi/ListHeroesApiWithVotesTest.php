@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\HeroesApi;
 
 use Database\Seeders\VotesSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;

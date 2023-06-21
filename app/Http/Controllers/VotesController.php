@@ -54,10 +54,9 @@ class VotesController extends Controller
 
             return response()->json(['voted' => true, 'data' => Votes::where('hero_id', $params['hero_id'])->first()], 200);
         } catch (PDOException $e) {
-            return response()->json(['voted' => false, 'error' => $e->getMessage()], $e->getCode() || 500);
+            return response()->json(['voted' => false, 'error' => $e->getMessage()], $e->getCode());
         } catch (Exception $e) {
-            throw $e;
-            return response()->json(['voted' => false, 'error' => $e->getMessage()], $e->getCode() || 500);
+            return response()->json(['voted' => false, 'error' => $e->getMessage()], $e->getCode());
         }
     }
 
@@ -84,10 +83,9 @@ class VotesController extends Controller
 
             return response()->json(['heroes' => $heroes], 200);
         } catch (PDOException $e) {
-            return response()->json(['error' => $e->getMessage()], $e->getCode() || 500);
+            return response()->json(['error' => $e->getMessage()], $e->getCode());
         } catch (Exception $e) {
-            throw $e;
-            return response()->json(['error' => $e->getMessage()], $e->getCode() || 500);
+            return response()->json(['error' => $e->getMessage()], $e->getCode());
         }
     }
 }

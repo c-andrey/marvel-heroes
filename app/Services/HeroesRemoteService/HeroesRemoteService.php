@@ -2,6 +2,7 @@
 
 namespace App\Services\HeroesRemoteService;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 
 class HeroesRemoteService
@@ -9,6 +10,7 @@ class HeroesRemoteService
     public function getHeroes(array $attributes)
     {
         $perPage = isset($attributes['perPage']) ? (int) $attributes['perPage'] : 10;
+        $page = isset($attributes['page']) ? (int) $attributes['page'] : 1;
 
         $params = [
             'apikey' =>  env('MARVEL_API_PUBLIC_KEY'),
@@ -21,19 +23,14 @@ class HeroesRemoteService
             $params['name'] = $attributes['name'];
         }
 
-        if (isset($attributes['page'])) {
-            $params['offset'] = ((int) $attributes['page'] - 1) * $perPage;
-        }
+        $params['offset'] = ((int) $page - 1) * $perPage;
 
         $response = Http::get(env('MARVEL_API_URL') . '/characters', $params);
 
-        if ($response->successful()) {
+        if ($response->getStatusCode() === 200) {
             return $response->json()['data'];
+        } else {
+            throw new Exception(isset($response->json()['status']) ? $response->json()['status'] : 'Error getting heroes from Marvel API', $response->getStatusCode());
         }
-
-        return response()->json([
-            'data' => null,
-            'message' => $response->json()['status'] ?? 'Error getting heroes from Marvel API',
-        ], $response->status());
     }
 }

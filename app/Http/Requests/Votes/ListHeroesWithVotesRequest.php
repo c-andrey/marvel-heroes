@@ -22,7 +22,9 @@ class ListHeroesWithVotesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'page' => 'integer|min:1',
+            'per_page' => 'integer',
+            'name' => 'string'
         ];
     }
 }

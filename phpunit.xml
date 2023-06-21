@@ -22,10 +22,15 @@
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
         <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <env name="DB_DATABASE" value=":memory:"/> -->
+        <env name="DB_DATABASE" value=":memory:"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
-        <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="MARVEL_API_URL" value="https://gateway.marvel.com/v1/public"/>
+        <env name="MARVEL_API_PUBLIC_KEY" value="f45f3dccfd10b2b6d7e9df21613eb34a"/>
+        <env name="MARVEL_API_TIMESTAMP" value="1"/>
+        <env name="MARVEL_API_HASHMD5" value="bdcc414432544e458996b306dfe0c4a4"/>
+        <env name="MARVEL_API_PRIVATE_KEY" value="2b8342999eacff4d0b528929469c097857a4f8ac"/>
+        
     </php>
 </phpunit>

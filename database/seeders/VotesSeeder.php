@@ -13,7 +13,7 @@ class VotesSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('votes')->insert([
+        DB::table('votes')->create([
             'hero_id' => 1011334,
             'votes' => 1
         ]);

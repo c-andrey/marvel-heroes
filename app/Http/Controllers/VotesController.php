@@ -26,8 +26,16 @@ class VotesController extends Controller
                     }
                     break;
 
+                case 'down':
+                    $votes = Votes::where('hero_id', $params['hero_id'])->first();
+
+                    if ($votes) {
+                        $votes->decrement('votes');
+                    }
+
+                    break;
                 default:
-                    # code...
+                    throw new Exception('Invalid action', 400);
                     break;
             }
 

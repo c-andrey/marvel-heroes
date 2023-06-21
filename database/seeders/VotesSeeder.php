@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Votes;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ class VotesSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('votes')->create([
+        Votes::create([
             'hero_id' => 1011334,
             'votes' => 1
         ]);

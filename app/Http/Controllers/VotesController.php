@@ -79,7 +79,7 @@ class VotesController extends Controller
                 }
 
                 return $hero;
-            });
+            })->sortByDesc('votes')->values();
 
 
             return response()->json(['heroes' => $heroes], 200);

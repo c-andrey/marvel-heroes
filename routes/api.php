@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/vote', [VotesController::class, 'store'])->name('vote.store');
+Route::get('/heroes', [VotesController::class, 'listHeroesWithVotes'])->name('vote.index');

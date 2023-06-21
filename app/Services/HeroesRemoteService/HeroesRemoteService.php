@@ -15,7 +15,7 @@ class HeroesRemoteService
         ]);
 
         if ($response->successful()) {
-            return response()->json($response->json()['data'], $response->status());
+            return $response->json()['data'];
         }
 
         return response()->json([

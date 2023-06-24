@@ -4,7 +4,8 @@ PASSOS PARA INSTALAÇÃO
 
 1. criar arquivo .env a partir do .env.example
 2. composer install
-3. php artisan serve
+3. php artisan migrate
+4. php artisan serve
 
 PASSOS PARA RODAR O TESTE
 

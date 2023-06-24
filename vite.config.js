@@ -7,15 +7,6 @@ export default defineConfig({
         laravel({
             input: 'resources/js/app.ts',
             refresh: true,
-        }),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
-
+        })
     ],
 });

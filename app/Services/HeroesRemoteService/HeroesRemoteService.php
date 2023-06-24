@@ -20,7 +20,7 @@ class HeroesRemoteService
         ];
 
         if (isset($attributes['name'])) {
-            $params['name'] = $attributes['name'];
+            $params['nameStartsWith'] = $attributes['name'];
         }
 
         $params['offset'] = ((int) $page - 1) * $perPage;

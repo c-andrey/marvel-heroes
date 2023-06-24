@@ -16,7 +16,7 @@ class WrongActionVoteTest extends TestCase
     {
         $this->seed(VotesSeeder::class);
 
-        $response = $this->post('/api/vote', [
+        $response = $this->post('/api/heroes/vote', [
             'hero_id' => 1011334,
             'action' => 'any_action'
         ]);

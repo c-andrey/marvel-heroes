@@ -14,7 +14,7 @@ class StoreVotesTest extends TestCase
      */
     public function test_create_votes(): void
     {
-        $response = $this->post('/api/vote', [
+        $response = $this->post('/api/heroes/vote', [
             'hero_id' => 1,
             'action' => 'up'
         ]);

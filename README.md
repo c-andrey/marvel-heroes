@@ -1,5 +1,8 @@
 ## Aplicação backend para listar heróis da marvel e adicionar votos no seu herói favorito.
 
+Optei por separar os projetos backend e frontend para uma maior liberdade com os projetos.
+
+
 PASSOS PARA INSTALAÇÃO
 
 1. criar arquivo .env a partir do .env.example

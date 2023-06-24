@@ -2,6 +2,7 @@
 
 Optei por separar os projetos backend e frontend para uma maior liberdade com os projetos.
 
+****NECESSÁRIO TER O MYSQL INSTALADO****
 
 PASSOS PARA INSTALAÇÃO
 

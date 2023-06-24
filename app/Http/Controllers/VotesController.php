@@ -7,7 +7,6 @@ use App\Http\Requests\Votes\StoreVotesRequest;
 use App\Models\Votes;
 use App\Services\HeroesRemoteService\HeroesRemoteService;
 use Exception;
-use Illuminate\Http\Request;
 use PDOException;
 
 class VotesController extends Controller
@@ -16,14 +15,14 @@ class VotesController extends Controller
     /**
      * @var HeroesRemoteService
      */
-    private $_heroesRemoteService;
+    private $heroesRemoteService;
 
-    function __construct()
+    public function __construct()
     {
-        $this->_heroesRemoteService = new HeroesRemoteService();
+        $this->heroesRemoteService = new HeroesRemoteService();
     }
 
-    function store(StoreVotesRequest $request)
+    public function store(StoreVotesRequest $request)
     {
         try {
             $params = $request->all();
@@ -38,7 +37,6 @@ class VotesController extends Controller
                         Votes::create(['votes' => 1, ...$params]);
                     }
                     break;
-
                 case 'down':
                     $votes = Votes::where('hero_id', $params['hero_id'])->first();
 
@@ -60,12 +58,12 @@ class VotesController extends Controller
         }
     }
 
-    function listHeroesWithVotes(ListHeroesWithVotesRequest $request)
+    public function listHeroesWithVotes(ListHeroesWithVotesRequest $request)
     {
         try {
             $params = $request->all();
 
-            $heroes = $this->_heroesRemoteService->getHeroes($params);
+            $heroes = $this->heroesRemoteService->getHeroes($params);
 
             $heroes['page'] = (int) $params['page'];
             $heroes['pages'] = (int) ceil($heroes['total'] / $heroes['limit']);

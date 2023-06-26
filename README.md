@@ -16,7 +16,7 @@ PASSOS PARA RODAR O TESTE
 1. php artisan migrate --env=testing
 2. php artisan test
 3. php artisan test --coverage
-4. com php unit instalado é possivel gerar coverage com UI pelo comando:  **vendor/bin/phpunit --coverage-html public/reports/**
+4. com php unit instalado é possivel gerar coverage com UI pelo comando:  **vendor/bin/phpunit --coverage-html public/reports/** e acessar o relatório através da URL: url:port/reports/ (sendo url = url definida para subir o servidor e port a porta definida, exemplo: http://localhost:8000/reports)
 
 TECNOLOGIAS UTILIZADAS
 
